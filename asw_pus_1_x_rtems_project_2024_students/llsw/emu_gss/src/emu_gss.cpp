@@ -34,7 +34,7 @@ void EmuGSS_ShowTM(const struct tm_descriptor *pTMDescriptor) {
 		break;
 
 	case (3):
-		//EmuGSS_ShowServ3TM(pTMDescriptor);
+		EmuGSS_ShowServ3TM(pTMDescriptor);
 		break;
 
 	case (5):
