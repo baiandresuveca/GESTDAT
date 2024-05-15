@@ -137,7 +137,7 @@ void PUSService5::BuildEventListTMs(CDEventList &eventList, CDTMList &tmList) {
 
 }
 
-//TO_DO
+//TODO
 void PUSService5::Exec5_5TC(CDTCHandler &tcHandler, CDTMList &tmList) {
 
 	uint8_t index;
@@ -146,13 +146,12 @@ void PUSService5::Exec5_5TC(CDTCHandler &tcHandler, CDTMList &tmList) {
 
 	//RID is obtained from TC AppData
 	RID = tcHandler.GetNextUInt16();
-
-	//TODO use GetRIDEnableConfigIndex and GetRIDEnableConfigOffset
-	//for set the bit of the array that enables the RID
+	index = GetRIDEnableConfigIndex(RID);
+	offset = GetRIDEnableConfigOffset(RID);
 
 	if (IsIndexValid(index)) {
 
-
+		RIDEnableConfig[index] = RIDEnableConfig[index] | (1<<offset);
 
 		PUSService1::BuildTM_1_7(tcHandler, tmList);
 
@@ -162,7 +161,7 @@ void PUSService5::Exec5_5TC(CDTCHandler &tcHandler, CDTMList &tmList) {
 	}
 }
 
-//TO_DO
+//TODO
 void PUSService5::Exec5_6TC(CDTCHandler &tcHandler, CDTMList &tmList) {
 
 	uint8_t index;
@@ -171,20 +170,24 @@ void PUSService5::Exec5_6TC(CDTCHandler &tcHandler, CDTMList &tmList) {
 
 	//RID is obtained from TC AppData
 	RID = tcHandler.GetNextUInt16();
+	index = GetRIDEnableConfigIndex(RID);
+	offset = GetRIDEnableConfigOffset(RID);
 
 	//TODO use GetRIDEnableConfigIndex and GetRIDEnableConfigOffset
 
+	if (IsIndexValid(index)) {
 
+		RIDEnableConfig[index] = RIDEnableConfig[index] & ~(1<<offset);
 
+		PUSService1::BuildTM_1_7(tcHandler, tmList);
 
+	} else {
 
-
-
-
-
-
-
+		PUSService1::BuildTM_1_8_TC_5_X_RIDUnknown(tcHandler, tmList, RID);
+	}
 }
+
+
 
 void PUSService5::ExecTC(CDTCHandler &tcHandler, CDTMList &tmList) {
 
