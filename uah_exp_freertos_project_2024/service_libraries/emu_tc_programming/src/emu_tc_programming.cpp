@@ -9,7 +9,7 @@
 #include <public/emu_sc_channel_drv_v1.h>
 #include <public/emu_gss_v1.h>
 
-
+//Macros para activar los tests
 #define FT_UAH_EXP_SERV_129_0010
 #define FT_UAH_EXP_SERV_129_0020
 
