@@ -75,8 +75,8 @@ void PUSService129::Exec129_2TC(CDTCHandler &tcHandler, CDTMList &tmList) {
 	float Kpx = tcHandler.GetNextFloat();
 	float Kpy = tcHandler.GetNextFloat();
 
-	if((-1 <= Kpx) && (Kpx <= 1)){
-		if((-1 <= Kpy) && (Kpy <= 1)){
+	if((0 <= Kpx) && (Kpx <= 0.5)){
+		if((0 <= Kpy) && (Kpy <= 0.5)){
 
 			// Actualizamos los nuevos Kp
 			sKpx = Kpx;
