@@ -1,11 +1,3 @@
-/*
- * emu_gss_pus_service129.cpp
- *
- *  Created on: Jun 3, 2024
- *      Author: atcsol
- */
-
-
 #include <stdio.h>
 
 #include "public/emu_gss_v1.h"
